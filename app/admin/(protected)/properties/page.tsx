@@ -9,24 +9,24 @@ export default async function AdminPropertiesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl text-charcoal">Properties</h1>
           <p className="mt-1 text-sm text-charcoal/60">Add and update hotels without touching any code.</p>
         </div>
-        <Link href="/admin/properties/new" className="btn-primary">
+        <Link href="/admin/properties/new" className="btn-primary self-start sm:self-auto">
           <Plus size={16} /> Add Property
         </Link>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-md bg-white shadow-card">
+      <div className="mt-8 overflow-x-auto rounded-md bg-white shadow-card">
         {properties.length === 0 ? (
           <p className="p-6 text-sm text-charcoal/50">
             No properties in the database yet. Run <code>supabase/seed.sql</code>, or click &ldquo;Add
             Property&rdquo; to create one.
           </p>
         ) : (
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[640px] text-left text-sm">
             <thead className="border-b border-charcoal/10 bg-cream-50 text-xs uppercase tracking-wide text-charcoal/50">
               <tr>
                 <th className="px-4 py-3">Name</th>

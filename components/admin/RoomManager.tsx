@@ -105,7 +105,7 @@ function RoomFormModal({ propertyId, room, onClose }: { propertyId: string; room
             <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Description</label>
             <textarea name="description" defaultValue={room?.description || ""} rows={2} className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 text-sm" />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Size (sq.ft)</label>
               <input name="size_sqft" type="number" defaultValue={room?.size_sqft ?? ""} className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 text-sm" />
