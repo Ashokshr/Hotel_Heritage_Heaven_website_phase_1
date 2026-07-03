@@ -37,17 +37,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Partners</p>
-          <ul className="space-y-2.5">
-            {FOOTER_LINKS.partners.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="text-sm text-heritage-300 hover:text-heritage-200">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="mb-4 mt-6 text-sm font-semibold uppercase tracking-wide text-white">Legal</p>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Legal</p>
           <ul className="space-y-2.5">
             {FOOTER_LINKS.legal.map((l) => (
               <li key={l.href}>

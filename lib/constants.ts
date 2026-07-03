@@ -12,23 +12,17 @@ export const SITE_CONFIG = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Hotels", href: "/hotels" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Travel Agents", href: "/travel-agents" },
+  { label: "About Us", href: "/#about" },
+  { label: "Our Properties", href: "/#properties" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const FOOTER_LINKS = {
   explore: [
-    { label: "About Us", href: "/about" },
-    { label: "Our Hotels", href: "/hotels" },
-    { label: "Gallery", href: "/gallery" },
+    { label: "About Us", href: "/#about" },
+    { label: "Our Properties", href: "/#properties" },
+    { label: "Why Choose Us", href: "/#why-choose-us" },
     { label: "Contact", href: "/contact" },
-  ],
-  partners: [
-    { label: "Travel Agents", href: "/travel-agents" },
-    { label: "Meetings & Groups", href: "/travel-agents#groups" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },

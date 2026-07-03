@@ -11,6 +11,8 @@ export default function Hero({
   title,
   subtitle,
   showButtons = true,
+  primaryLabel = "Our Properties",
+  primaryHref = "/#properties",
   height = "full",
 }: {
   image: string;
@@ -18,6 +20,8 @@ export default function Hero({
   title: string;
   subtitle?: string;
   showButtons?: boolean;
+  primaryLabel?: string;
+  primaryHref?: string;
   height?: "full" | "tall";
 }) {
   const { open } = useEnquiryModal();
@@ -44,8 +48,8 @@ export default function Hero({
 
         {showButtons && (
           <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "0.3s" }}>
-            <Link href="/hotels" className="btn-primary min-w-[180px]">
-              Explore Hotels
+            <Link href={primaryHref} className="btn-primary min-w-[180px]">
+              {primaryLabel}
             </Link>
             <button onClick={() => open()} className="btn-secondary min-w-[180px] bg-transparent border-white/40 text-white hover:border-white">
               Enquire Now
