@@ -5,9 +5,9 @@ export const SITE_CONFIG = {
     "Premium, family-run mountain stays across Himachal Pradesh. Book direct with Heritage Heaven Hotels for the best rates and personal service.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://heritageheavenhotels.com",
   ogImage: "/og-image.jpg",
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210",
-  supportEmail: "reservations@heritageheavenhotels.com",
-  supportPhone: "+91-98765-43210",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876074252",
+  supportEmail: "hotelrosewoodin@gmail.com",
+  supportPhone: "+91-98760-74252",
 };
 
 export const NAV_LINKS = [
