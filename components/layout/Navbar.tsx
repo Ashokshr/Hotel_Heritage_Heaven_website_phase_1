@@ -39,9 +39,9 @@ export default function Navbar() {
           <Image
             src="/images/heritage-heaven-emblem.png"
             alt="Heritage Heaven Hotels crest"
-            width={44}
-            height={44}
-            className="h-9 w-9 shrink-0 sm:h-11 sm:w-11"
+            width={64}
+            height={64}
+            className="h-12 w-12 shrink-0 sm:h-14 sm:w-14"
             priority
           />
           <span className="flex flex-col leading-tight">

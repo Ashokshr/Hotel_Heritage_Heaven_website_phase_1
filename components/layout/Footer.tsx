@@ -12,9 +12,9 @@ export default function Footer() {
             <Image
               src="/images/heritage-heaven-emblem.png"
               alt="Heritage Heaven Hotels crest"
-              width={48}
-              height={48}
-              className="h-11 w-11 shrink-0"
+              width={72}
+              height={72}
+              className="h-16 w-16 shrink-0"
             />
             <div>
               <p className="font-serif text-2xl text-white">Heritage Heaven</p>
