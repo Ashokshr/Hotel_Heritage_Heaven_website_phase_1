@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Loader2, Save } from "lucide-react";
 import { upsertProperty } from "@/lib/actions/admin-properties";
 import ImageUploader from "@/components/admin/ImageUploader";
+import GalleryManager from "@/components/admin/GalleryManager";
 import type { Property } from "@/lib/types";
 
 export default function PropertyForm({ property }: { property?: Property | null }) {
@@ -12,17 +13,10 @@ export default function PropertyForm({ property }: { property?: Property | null 
   const [error, setError] = useState<string | null>(null);
 
   const [heroImageUrl, setHeroImageUrl] = useState(property?.hero_image_url || "");
-  const [galleryText, setGalleryText] = useState(
-    property?.gallery_images?.map((g) => `${g.url} | ${g.alt} | ${g.category}`).join("\n") || ""
-  );
 
   const amenitiesText = property?.amenities?.join("\n") || "";
   const attractionsText = property?.nearby_attractions?.map((a) => `${a.name} | ${a.distance} | ${a.description}`).join("\n") || "";
   const faqsText = property?.faqs?.map((f) => `${f.question} :: ${f.answer}`).join("\n") || "";
-
-  function addGalleryImage(url: string) {
-    setGalleryText((prev) => (prev ? `${prev}\n${url} | New photo | property` : `${url} | New photo | property`));
-  }
 
   function handleSubmit(formData: FormData) {
     setError(null);
@@ -93,22 +87,14 @@ export default function PropertyForm({ property }: { property?: Property | null 
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Add Gallery Photos</label>
-          <ImageUploader label="Upload gallery photos (select multiple)" onUploaded={addGalleryImage} multiple />
-          <p className="mt-2 text-xs text-charcoal/50">
-            Select or drag in several photos at once — each is added below as &ldquo;New photo&rdquo; in the
-            &ldquo;property&rdquo; category. Edit the alt text and category (property/rooms/restaurant/views) directly in
-            the list.
-          </p>
+          <label className="mb-2 block text-sm font-medium text-charcoal/80">
+            Property Gallery — categories &amp; photos
+          </label>
+          <GalleryManager
+            initialCategories={property?.gallery_categories || []}
+            initialImages={property?.gallery_images || []}
+          />
         </div>
-
-        <TextArea
-          label="Gallery Images — one per line: url | alt text | category (property/rooms/restaurant/views)"
-          name="gallery_images"
-          value={galleryText}
-          onChange={setGalleryText}
-          rows={6}
-        />
       </Section>
 
       <Section title="Amenities">

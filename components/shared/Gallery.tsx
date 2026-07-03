@@ -4,54 +4,84 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { GalleryImage } from "@/lib/types";
+import type { GalleryCategory, GalleryImage } from "@/lib/types";
 
-export default function Gallery({ images, showFilters = true }: { images: GalleryImage[]; showFilters?: boolean }) {
-  const categories = useMemo(() => {
-    const set = new Set(images.map((i) => i.category || "other"));
-    return ["all", ...Array.from(set)];
-  }, [images]);
+const UNCATEGORIZED = "__uncategorized__";
 
-  const [filter, setFilter] = useState("all");
+export default function Gallery({
+  images,
+  categories = [],
+  showFilters = true,
+}: {
+  images: GalleryImage[];
+  categories?: GalleryCategory[];
+  showFilters?: boolean;
+}) {
+  const sortedCategories = useMemo(() => [...categories].sort((a, b) => a.sortOrder - b.sortOrder), [categories]);
+
+  const categoryName = (id: string | undefined) => {
+    if (!id) return "Uncategorized";
+    return sortedCategories.find((c) => c.id === id)?.name || categories.find((c) => c.id === id)?.name || id;
+  };
+
+  // Only show filter pills for categories that actually have photos.
+  const usedCategoryIds = useMemo(() => new Set(images.map((i) => i.categoryId || UNCATEGORIZED)), [images]);
+  const filterOptions = useMemo(() => {
+    const opts = sortedCategories.filter((c) => usedCategoryIds.has(c.id)).map((c) => ({ id: c.id, label: c.name }));
+    if (usedCategoryIds.has(UNCATEGORIZED)) opts.push({ id: UNCATEGORIZED, label: "Other" });
+    return opts;
+  }, [sortedCategories, usedCategoryIds]);
+
+  const [filter, setFilter] = useState<string>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filtered = filter === "all" ? images : images.filter((i) => (i.category || "other") === filter);
+  const filtered = filter === "all" ? images : images.filter((i) => (i.categoryId || UNCATEGORIZED) === filter);
 
   return (
     <div>
-      {showFilters && categories.length > 2 && (
+      {showFilters && filterOptions.length > 1 && (
         <div className="mb-8 flex flex-wrap gap-2">
-          {categories.map((c) => (
+          <button
+            onClick={() => setFilter("all")}
+            className={cn(
+              "rounded-full border px-4 py-1.5 text-sm transition-colors",
+              filter === "all" ? "border-heritage-500 bg-heritage-500 text-white" : "border-charcoal/15 text-charcoal/70 hover:border-heritage-400"
+            )}
+          >
+            All
+          </button>
+          {filterOptions.map((opt) => (
             <button
-              key={c}
-              onClick={() => setFilter(c)}
+              key={opt.id}
+              onClick={() => setFilter(opt.id)}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm capitalize transition-colors",
-                filter === c
-                  ? "border-heritage-500 bg-heritage-500 text-white"
-                  : "border-charcoal/15 text-charcoal/70 hover:border-heritage-400"
+                "rounded-full border px-4 py-1.5 text-sm transition-colors",
+                filter === opt.id ? "border-heritage-500 bg-heritage-500 text-white" : "border-charcoal/15 text-charcoal/70 hover:border-heritage-400"
               )}
             >
-              {c}
+              {opt.label}
             </button>
           ))}
         </div>
       )}
 
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((image, idx) => (
           <button
-            key={image.url + idx}
+            key={image.id || image.url + idx}
             onClick={() => setLightboxIndex(idx)}
-            className="block w-full overflow-hidden rounded-md break-inside-avoid"
+            className="group relative block aspect-[4/3] w-full overflow-hidden rounded-md"
           >
             <Image
               src={image.url}
               alt={image.alt}
-              width={600}
-              height={idx % 3 === 0 ? 750 : 450}
-              className="w-full object-cover transition-transform duration-500 hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-transparent px-4 py-3">
+              <p className="text-left text-sm font-medium text-white">{categoryName(image.categoryId)}</p>
+            </div>
           </button>
         ))}
       </div>

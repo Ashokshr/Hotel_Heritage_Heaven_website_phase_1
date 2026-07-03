@@ -39,12 +39,26 @@ function parseAmenities(formData: FormData) {
   return lines(formData.get("amenities"));
 }
 
+function parseJsonField<T>(formData: FormData, field: string, fallback: T): T {
+  const raw = formData.get(field);
+  if (!raw) return fallback;
+  try {
+    return JSON.parse(String(raw)) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+function parseGalleryCategories(formData: FormData) {
+  return parseJsonField(formData, "gallery_categories", [] as { id: string; name: string; sortOrder: number }[]);
+}
+
 function parseGalleryImages(formData: FormData) {
-  // one per line: url | alt text | category
-  return lines(formData.get("gallery_images")).map((line) => {
-    const [url, alt, category] = line.split("|").map((s) => s?.trim());
-    return { url: url || "", alt: alt || "", category: category || "property" };
-  });
+  return parseJsonField(
+    formData,
+    "gallery_images",
+    [] as { id: string; url: string; alt: string; categoryId?: string; isFeatured?: boolean; sortOrder?: number }[]
+  );
 }
 
 function parseNearbyAttractions(formData: FormData) {
@@ -100,6 +114,7 @@ export async function upsertProperty(propertyId: string | null, formData: FormDa
     email: String(formData.get("email") || ""),
     starting_price: formData.get("starting_price") ? Number(formData.get("starting_price")) : null,
     hero_image_url: String(formData.get("hero_image_url") || ""),
+    gallery_categories: parseGalleryCategories(formData),
     gallery_images: parseGalleryImages(formData),
     amenities: parseAmenities(formData),
     nearby_attractions: parseNearbyAttractions(formData),

@@ -98,7 +98,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
           <div className="container-site">
             <SectionHeading eyebrow="Gallery" title="A Look Inside" />
             <div className="mt-10">
-              <Gallery images={property.gallery_images} />
+              <Gallery images={property.gallery_images} categories={property.gallery_categories} />
             </div>
           </div>
         </section>
