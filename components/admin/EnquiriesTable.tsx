@@ -18,7 +18,9 @@ export default function EnquiriesTable({ enquiries }: { enquiries: Enquiry[] }) 
 
   function handleStatusChange(id: string, status: EnquiryStatus) {
     setItems((prev) => prev.map((e) => (e.id === id ? { ...e, status } : e)));
-    startTransition(() => updateEnquiryStatus(id, status));
+    startTransition(() => {
+      updateEnquiryStatus(id, status);
+    });
   }
 
   function exportCSV() {

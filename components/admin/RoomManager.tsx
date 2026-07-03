@@ -55,7 +55,11 @@ function DeleteRoomButton({ propertyId, roomId }: { propertyId: string; roomId: 
     <button
       disabled={isPending}
       onClick={() => {
-        if (confirm("Delete this room?")) startTransition(() => deleteRoom(propertyId, roomId));
+        if (confirm("Delete this room?")) {
+          startTransition(() => {
+            deleteRoom(propertyId, roomId);
+          });
+        }
       }}
       className="rounded-sm p-2 text-red-500 hover:bg-red-50"
     >
