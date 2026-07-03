@@ -12,64 +12,83 @@ const BUCKET = "property-images";
 /**
  * Drag-and-drop / click-to-browse image uploader. Uploads straight to
  * Supabase Storage using a signed upload URL (minted server-side), then
- * hands the resulting public URL back via onUploaded.
+ * hands each resulting public URL back via onUploaded. When `multiple` is
+ * set, several files can be selected/dropped at once — they upload one
+ * after another and onUploaded fires once per successful file.
  */
 export default function ImageUploader({
   onUploaded,
   label = "Upload image",
   compact = false,
+  multiple = false,
 }: {
   onUploaded: (url: string) => void;
   label?: string;
   compact?: boolean;
+  multiple?: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleFile(file: File) {
-    setError(null);
-
+  async function uploadOne(file: File): Promise<string | null> {
     if (!file.type.startsWith("image/")) {
-      setError("Please choose an image file.");
-      return;
+      setError(`"${file.name}" isn't an image — skipped.`);
+      return null;
     }
     if (file.size > MAX_FILE_MB * 1024 * 1024) {
-      setError(`Image is too large — please keep it under ${MAX_FILE_MB}MB.`);
-      return;
+      setError(`"${file.name}" is over ${MAX_FILE_MB}MB — skipped.`);
+      return null;
     }
 
+    const result = await createUploadUrl(file.name);
+    if (!result.ok) {
+      setError(result.error);
+      return null;
+    }
+
+    const supabase = createClient();
+    if (!supabase) {
+      setError("Supabase isn't configured in this browser session.");
+      return null;
+    }
+
+    const { error: uploadError } = await supabase.storage.from(BUCKET).uploadToSignedUrl(result.path, result.token, file);
+    if (uploadError) {
+      setError(uploadError.message);
+      return null;
+    }
+
+    return result.publicUrl;
+  }
+
+  async function handleFiles(files: File[]) {
+    if (files.length === 0) return;
+    setError(null);
     setIsUploading(true);
+    setProgress({ done: 0, total: files.length });
+
     try {
-      const result = await createUploadUrl(file.name);
-      if (!result.ok) {
-        setError(result.error);
-        return;
+      for (let i = 0; i < files.length; i++) {
+        const url = await uploadOne(files[i]);
+        if (url) onUploaded(url);
+        setProgress({ done: i + 1, total: files.length });
       }
-
-      const supabase = createClient();
-      if (!supabase) {
-        setError("Supabase isn't configured in this browser session.");
-        return;
-      }
-
-      const { error: uploadError } = await supabase.storage
-        .from(BUCKET)
-        .uploadToSignedUrl(result.path, result.token, file);
-
-      if (uploadError) {
-        setError(uploadError.message);
-        return;
-      }
-
-      onUploaded(result.publicUrl);
     } catch {
-      setError("Something went wrong uploading the image. Please try again.");
+      setError("Something went wrong uploading. Please try again.");
     } finally {
       setIsUploading(false);
+      setProgress(null);
     }
   }
+
+  const buttonLabel = isUploading
+    ? progress && progress.total > 1
+      ? `Uploading ${progress.done}/${progress.total}...`
+      : "Uploading..."
+    : label;
 
   return (
     <div>
@@ -77,10 +96,11 @@ export default function ImageUploader({
         ref={inputRef}
         type="file"
         accept="image/*"
+        multiple={multiple}
         className="hidden"
         onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) handleFile(file);
+          const files = Array.from(e.target.files || []);
+          if (files.length) handleFiles(files);
           e.target.value = "";
         }}
       />
@@ -96,8 +116,8 @@ export default function ImageUploader({
         onDrop={(e) => {
           e.preventDefault();
           setIsDragging(false);
-          const file = e.dataTransfer.files?.[0];
-          if (file) handleFile(file);
+          const files = Array.from(e.dataTransfer.files || []);
+          if (files.length) handleFiles(multiple ? files : files.slice(0, 1));
         }}
         disabled={isUploading}
         className={cn(
@@ -108,7 +128,7 @@ export default function ImageUploader({
         )}
       >
         {isUploading ? <Loader2 size={16} className="animate-spin" /> : <UploadCloud size={16} />}
-        {isUploading ? "Uploading..." : label}
+        {buttonLabel}
       </button>
 
       {error && <p className="mt-1.5 text-xs text-red-600">{error}</p>}

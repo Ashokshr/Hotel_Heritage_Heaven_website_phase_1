@@ -137,7 +137,7 @@ function RoomFormModal({ propertyId, room, onClose }: { propertyId: string; room
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Room Photos</label>
-            <ImageUploader label="Upload a room photo" compact onUploaded={addRoomImage} />
+            <ImageUploader label="Upload room photos (select multiple)" compact onUploaded={addRoomImage} multiple />
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Images — one per line: url | alt text</label>

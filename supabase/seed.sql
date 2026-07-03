@@ -115,10 +115,10 @@ select p.id, g.meal_plan, g.price_per_room, g.price_per_person, g.min_group_size
 from public.properties p
 cross join (
   values
-    ('EP', 2500.00, null, 8, 'Room only. Ideal for budget-conscious groups.', 1),
-    ('CP', 2900.00, null, 8, 'Room + breakfast.', 2),
-    ('MAP', 3600.00, null, 10, 'Room + breakfast + dinner.', 3),
-    ('AP', 4200.00, null, 10, 'Room + all meals. Best for school/college groups.', 4)
+    ('EP', 2500.00, null::numeric, 8, 'Room only. Ideal for budget-conscious groups.', 1),
+    ('CP', 2900.00, null::numeric, 8, 'Room + breakfast.', 2),
+    ('MAP', 3600.00, null::numeric, 10, 'Room + breakfast + dinner.', 3),
+    ('AP', 4200.00, null::numeric, 10, 'Room + all meals. Best for school/college groups.', 4)
 ) as g(meal_plan, price_per_room, price_per_person, min_group_size, notes, sort_order)
 where p.slug = 'rosewood-inn-mcleod-ganj'
 on conflict do nothing;
@@ -190,7 +190,7 @@ cross join (
     (
       'Semi Deluxe Room',
       'A cosy, well-appointed room with mountain views — a comfortable base for couples and solo travellers.',
-      144, 2, '1 Double Bed', 'Mountain / Hill View', 2550.00, 2950.00, null, null,
+      144, 2, '1 Double Bed', 'Mountain / Hill View', 2550.00, 2950.00, null::numeric, null::text,
       '["Free Wi-Fi", "Daily housekeeping", "In-room dining", "Laundry service", "Attached bathroom"]',
       '[{"url": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=1200&auto=format&fit=crop", "alt": "Semi Deluxe Room"}]',
       1
@@ -198,7 +198,7 @@ cross join (
     (
       'Deluxe Room With Balcony',
       'A spacious room with a private balcony framing the surrounding hills.',
-      225, 2, '1 Double Bed', 'Mountain / Hill View', 2950.00, 3400.00, null, null,
+      225, 2, '1 Double Bed', 'Mountain / Hill View', 2950.00, 3400.00, null::numeric, null::text,
       '["Free Wi-Fi", "Private balcony", "Iron & ironing board", "Attached bathroom", "In-room dining"]',
       '[{"url": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=1200&auto=format&fit=crop", "alt": "Deluxe Room with balcony"}]',
       2
@@ -206,7 +206,7 @@ cross join (
     (
       'Super Deluxe Room With Balcony',
       'The property''s valley-facing room, with a queen bed and private balcony.',
-      168, 2, '1 Queen Bed', 'Valley View', 3950.00, 4500.00, null, null,
+      168, 2, '1 Queen Bed', 'Valley View', 3950.00, 4500.00, null::numeric, null::text,
       '["Free Wi-Fi", "Private balcony", "Iron & ironing board", "Attached bathroom", "In-room dining"]',
       '[{"url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1200&auto=format&fit=crop", "alt": "Super Deluxe Room with balcony, valley view"}]',
       3
@@ -214,7 +214,7 @@ cross join (
     (
       'Family Suite With Balcony',
       'The largest room type, built for families, with a private balcony and mountain views.',
-      270, 4, '1 Double Bed', 'Mountain / Hill View', 4750.00, 5400.00, null, null,
+      270, 4, '1 Double Bed', 'Mountain / Hill View', 4750.00, 5400.00, null::numeric, null::text,
       '["Free Wi-Fi", "Private balcony", "Iron & ironing board", "Daily housekeeping", "Attached bathroom", "In-room dining"]',
       '[{"url": "https://images.unsplash.com/photo-1601565415267-724f1a6c1e6f?q=80&w=1200&auto=format&fit=crop", "alt": "Family Suite with balcony"}]',
       4
@@ -239,9 +239,9 @@ select p.id, g.meal_plan, g.price_per_room, g.price_per_person, g.min_group_size
 from public.properties p
 cross join (
   values
-    ('EP', 2300.00, null, 8, 'Room only.', 1),
-    ('CP', 2700.00, null, 8, 'Room + breakfast.', 2),
-    ('MAP', 3300.00, null, 10, 'Room + breakfast + dinner.', 3)
+    ('EP', 2300.00, null::numeric, 8, 'Room only.', 1),
+    ('CP', 2700.00, null::numeric, 8, 'Room + breakfast.', 2),
+    ('MAP', 3300.00, null::numeric, 10, 'Room + breakfast + dinner.', 3)
 ) as g(meal_plan, price_per_room, price_per_person, min_group_size, notes, sort_order)
 where p.slug = 'rajas-palace-mcleod-ganj'
 on conflict do nothing;

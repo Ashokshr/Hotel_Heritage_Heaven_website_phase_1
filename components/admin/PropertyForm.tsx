@@ -93,11 +93,12 @@ export default function PropertyForm({ property }: { property?: Property | null 
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Add a Gallery Photo</label>
-          <ImageUploader label="Upload a gallery photo" onUploaded={addGalleryImage} />
+          <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Add Gallery Photos</label>
+          <ImageUploader label="Upload gallery photos (select multiple)" onUploaded={addGalleryImage} multiple />
           <p className="mt-2 text-xs text-charcoal/50">
-            Uploaded photos are added below as &ldquo;New photo&rdquo; in the &ldquo;property&rdquo; category — edit the alt
-            text and category (property/rooms/restaurant/views) directly in the list.
+            Select or drag in several photos at once — each is added below as &ldquo;New photo&rdquo; in the
+            &ldquo;property&rdquo; category. Edit the alt text and category (property/rooms/restaurant/views) directly in
+            the list.
           </p>
         </div>
 

@@ -123,17 +123,19 @@ export async function upsertProperty(propertyId: string | null, formData: FormDa
   if (error) return { ok: false, error: error.message };
 
   revalidatePath("/admin/properties");
-  revalidatePath("/hotels");
+  revalidatePath("/");
+  revalidatePath(`/hotels/${payload.slug}`);
   redirect("/admin/properties");
 }
 
 export async function deleteProperty(id: string) {
   const supabase = await getClient();
-  if (!supabase) return { ok: false };
+  if (!supabase) return { ok: false, error: "Supabase is not configured." };
   const { error } = await supabase.from("properties").delete().eq("id", id);
+  if (error) return { ok: false, error: error.message };
   revalidatePath("/admin/properties");
-  revalidatePath("/hotels");
-  return { ok: !error };
+  revalidatePath("/");
+  return { ok: true };
 }
 
 export async function upsertRoom(propertyId: string, roomId: string | null, formData: FormData) {

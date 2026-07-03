@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
 import { getAdminProperties } from "@/lib/actions/admin-properties";
 import { formatINR } from "@/lib/utils";
+import DeletePropertyButton from "@/components/admin/DeletePropertyButton";
 
 export default async function AdminPropertiesPage() {
   const properties = await getAdminProperties();
@@ -49,9 +50,12 @@ export default async function AdminPropertiesPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/properties/${p.id}`} className="inline-flex items-center gap-1.5 text-heritage-500 hover:underline">
-                      <Pencil size={14} /> Edit
-                    </Link>
+                    <div className="flex items-center justify-end gap-4">
+                      <Link href={`/admin/properties/${p.id}`} className="inline-flex items-center gap-1.5 text-heritage-500 hover:underline">
+                        <Pencil size={14} /> Edit
+                      </Link>
+                      <DeletePropertyButton propertyId={p.id} propertyName={p.name} />
+                    </div>
                   </td>
                 </tr>
               ))}
