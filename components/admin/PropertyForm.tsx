@@ -1,18 +1,28 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Image from "next/image";
 import { Loader2, Save } from "lucide-react";
 import { upsertProperty } from "@/lib/actions/admin-properties";
+import ImageUploader from "@/components/admin/ImageUploader";
 import type { Property } from "@/lib/types";
 
 export default function PropertyForm({ property }: { property?: Property | null }) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
 
+  const [heroImageUrl, setHeroImageUrl] = useState(property?.hero_image_url || "");
+  const [galleryText, setGalleryText] = useState(
+    property?.gallery_images?.map((g) => `${g.url} | ${g.alt} | ${g.category}`).join("\n") || ""
+  );
+
   const amenitiesText = property?.amenities?.join("\n") || "";
-  const galleryText = property?.gallery_images?.map((g) => `${g.url} | ${g.alt} | ${g.category}`).join("\n") || "";
   const attractionsText = property?.nearby_attractions?.map((a) => `${a.name} | ${a.distance} | ${a.description}`).join("\n") || "";
   const faqsText = property?.faqs?.map((f) => `${f.question} :: ${f.answer}`).join("\n") || "";
+
+  function addGalleryImage(url: string) {
+    setGalleryText((prev) => (prev ? `${prev}\n${url} | New photo | property` : `${url} | New photo | property`));
+  }
 
   function handleSubmit(formData: FormData) {
     setError(null);
@@ -61,12 +71,42 @@ export default function PropertyForm({ property }: { property?: Property | null 
       </Section>
 
       <Section title="Images">
-        <Field label="Hero Image URL" name="hero_image_url" defaultValue={property?.hero_image_url || ""} />
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Hero Image</label>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+            {heroImageUrl && (
+              <div className="relative h-24 w-40 shrink-0 overflow-hidden rounded-sm border border-charcoal/10">
+                <Image src={heroImageUrl} alt="Hero preview" fill className="object-cover" unoptimized />
+              </div>
+            )}
+            <div className="flex-1 space-y-2">
+              <input
+                name="hero_image_url"
+                value={heroImageUrl}
+                onChange={(e) => setHeroImageUrl(e.target.value)}
+                placeholder="https://... or upload below"
+                className="w-full rounded-sm border border-charcoal/15 bg-cream-50 px-3.5 py-2.5 text-sm outline-none focus:border-heritage-400"
+              />
+              <ImageUploader label="Upload hero photo" compact onUploaded={setHeroImageUrl} />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Add a Gallery Photo</label>
+          <ImageUploader label="Upload a gallery photo" onUploaded={addGalleryImage} />
+          <p className="mt-2 text-xs text-charcoal/50">
+            Uploaded photos are added below as &ldquo;New photo&rdquo; in the &ldquo;property&rdquo; category — edit the alt
+            text and category (property/rooms/restaurant/views) directly in the list.
+          </p>
+        </div>
+
         <TextArea
           label="Gallery Images — one per line: url | alt text | category (property/rooms/restaurant/views)"
           name="gallery_images"
-          defaultValue={galleryText}
-          rows={5}
+          value={galleryText}
+          onChange={setGalleryText}
+          rows={6}
         />
       </Section>
 
@@ -161,19 +201,26 @@ function TextArea({
   label,
   name,
   defaultValue,
+  value,
+  onChange,
   rows = 3,
 }: {
   label: string;
   name: string;
   defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
   rows?: number;
 }) {
+  const isControlled = value !== undefined;
   return (
     <div>
       <label className="mb-1.5 block text-sm font-medium text-charcoal/80">{label}</label>
       <textarea
         name={name}
-        defaultValue={defaultValue}
+        {...(isControlled
+          ? { value, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange?.(e.target.value) }
+          : { defaultValue })}
         rows={rows}
         className="w-full rounded-sm border border-charcoal/15 bg-cream-50 px-3.5 py-2.5 font-mono text-xs outline-none focus:border-heritage-400"
       />

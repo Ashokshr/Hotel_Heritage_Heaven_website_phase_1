@@ -88,6 +88,7 @@ export const FALLBACK_PROPERTIES: Property[] = [
         amenities: ["Private balcony", "Work desk & chair", "Mineral water", "Iron & ironing board", "Wardrobe/closet", "Attached bathroom"],
         images: [{ url: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop", alt: "Super Deluxe Room balcony view" }],
         sort_order: 1,
+        is_available: true,
       },
       {
         id: "demo-room-family",
@@ -102,6 +103,7 @@ export const FALLBACK_PROPERTIES: Property[] = [
         amenities: ["Private balcony", "Work desk & chair", "Mineral water", "Iron & ironing board", "Wardrobe/closet", "Attached bathroom"],
         images: [{ url: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop", alt: "Family Room interior" }],
         sort_order: 2,
+        is_available: true,
       },
     ],
   },

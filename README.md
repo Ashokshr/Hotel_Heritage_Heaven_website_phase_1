@@ -48,10 +48,13 @@ supabase/
 
 2. **Create a Supabase project** at [supabase.com](https://supabase.com) (free tier is enough to start).
 
-3. **Run the database migration and seed data**
-   - Open your Supabase project → SQL Editor
-   - Paste and run `supabase/migrations/0001_init.sql`
-   - Paste and run `supabase/seed.sql` (loads Hotel Rosewood Inn's details, rooms, and sample reviews)
+3. **Run the database migrations and seed data** (in this order, in the Supabase SQL Editor)
+   - `supabase/migrations/0001_init.sql` — core schema (properties, rooms, reviews, enquiries, RLS)
+   - `supabase/migrations/0002_storage.sql` — `property-images` Storage bucket used by the admin
+     photo uploader
+   - `supabase/migrations/0003_room_availability.sql` — adds the room-level "available for
+     booking" / "sold out" toggle
+   - `supabase/seed.sql` — Hotel Rosewood Inn's details, rooms, and sample reviews
 
 4. **Create your first admin user**
    - Supabase Dashboard → Authentication → Users → Add User (email + password)
@@ -99,6 +102,18 @@ real property photography via the admin CMS.
   (New/Contacted/Confirmed/Closed), export to CSV.
 - **Properties:** add/edit hotels — images, description, amenities, room types, rates, location,
   FAQs, and policies — with no code changes or redeploys required.
+- **Photos:** upload hero/gallery/room photos directly from the property/room forms (drag-and-drop
+  or click to browse) — files go straight to Supabase Storage, no URLs to hunt for. Pasting a URL
+  manually still works too.
+- **Pricing:** editable at both levels — `Starting Price` on the property form (used on listing
+  cards) and `Price / night` per room type on each room.
+- **Availability:** each room has an "Available for booking" checkbox. Unchecking it shows a
+  "Sold Out" badge on the property page and disables that room's Enquire button — useful when a
+  room type is fully booked without deleting it. This is a manual toggle, not a date-based
+  calendar (Phase 1 has no real-time booking engine — see "What's Next" below).
+- **Publish/unpublish:** the `Published` checkbox on the property form hides an entire property
+  from the live site (listing pages, sitemap) without deleting it — handy for properties still
+  being set up.
 
 List/object fields (amenities, gallery images, nearby attractions, FAQs) use a simple plain-text
 format in the CMS forms instead of raw JSON — the format is explained in each field's label.

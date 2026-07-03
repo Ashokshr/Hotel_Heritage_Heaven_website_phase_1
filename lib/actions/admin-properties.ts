@@ -155,6 +155,7 @@ export async function upsertRoom(propertyId: string, roomId: string | null, form
       return { url: url || "", alt: alt || "" };
     }),
     sort_order: formData.get("sort_order") ? Number(formData.get("sort_order")) : 0,
+    is_available: formData.get("is_available") === "on",
   };
 
   const query = roomId

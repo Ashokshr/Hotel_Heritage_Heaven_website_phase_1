@@ -38,6 +38,7 @@ export interface Room {
   amenities: string[];
   images: { url: string; alt: string }[];
   sort_order: number;
+  is_available: boolean;
 }
 
 export interface Property {

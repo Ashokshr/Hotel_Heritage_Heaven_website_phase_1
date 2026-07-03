@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { Loader2, Plus, Trash2, Pencil } from "lucide-react";
 import { upsertRoom, deleteRoom } from "@/lib/actions/admin-properties";
 import { formatINR } from "@/lib/utils";
+import ImageUploader from "@/components/admin/ImageUploader";
 import type { Room } from "@/lib/types";
 
 export default function RoomManager({ propertyId, rooms }: { propertyId: string; rooms: Room[] }) {
@@ -23,7 +24,14 @@ export default function RoomManager({ propertyId, rooms }: { propertyId: string;
         {rooms.map((room) => (
           <div key={room.id} className="flex items-center justify-between rounded-sm border border-charcoal/10 px-4 py-3">
             <div>
-              <p className="text-sm font-medium text-charcoal">{room.name}</p>
+              <p className="flex items-center gap-2 text-sm font-medium text-charcoal">
+                {room.name}
+                {room.is_available === false && (
+                  <span className="rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-600">
+                    Sold Out
+                  </span>
+                )}
+              </p>
               <p className="text-xs text-charcoal/50">
                 {room.occupancy} guests · {room.price_per_night ? formatINR(room.price_per_night) : "No rate set"}
               </p>
@@ -71,7 +79,11 @@ function DeleteRoomButton({ propertyId, roomId }: { propertyId: string; roomId: 
 function RoomFormModal({ propertyId, room, onClose }: { propertyId: string; room: Room | null; onClose: () => void }) {
   const [isPending, startTransition] = useTransition();
   const amenitiesText = room?.amenities?.join("\n") || "";
-  const imagesText = room?.images?.map((i) => `${i.url} | ${i.alt}`).join("\n") || "";
+  const [imagesText, setImagesText] = useState(room?.images?.map((i) => `${i.url} | ${i.alt}`).join("\n") || "");
+
+  function addRoomImage(url: string) {
+    setImagesText((prev) => (prev ? `${prev}\n${url} | New photo` : `${url} | New photo`));
+  }
 
   function handleSubmit(formData: FormData) {
     startTransition(async () => {
@@ -124,9 +136,23 @@ function RoomFormModal({ propertyId, room, onClose }: { propertyId: string; room
             <textarea name="amenities" defaultValue={amenitiesText} rows={3} className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 font-mono text-xs" />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Images — one per line: url | alt text</label>
-            <textarea name="images" defaultValue={imagesText} rows={3} className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 font-mono text-xs" />
+            <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Room Photos</label>
+            <ImageUploader label="Upload a room photo" compact onUploaded={addRoomImage} />
           </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Images — one per line: url | alt text</label>
+            <textarea
+              name="images"
+              value={imagesText}
+              onChange={(e) => setImagesText(e.target.value)}
+              rows={3}
+              className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 font-mono text-xs"
+            />
+          </div>
+          <label className="flex items-center gap-2 text-sm text-charcoal/75">
+            <input type="checkbox" name="is_available" defaultChecked={room?.is_available ?? true} className="h-4 w-4" />
+            Available for booking (uncheck to mark as &ldquo;Sold Out&rdquo; on the site)
+          </label>
           <div className="flex justify-end gap-3 pt-2">
             <button type="button" onClick={onClose} className="btn-secondary">
               Cancel

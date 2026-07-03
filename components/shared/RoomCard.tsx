@@ -23,7 +23,14 @@ export default function RoomCard({ room, propertyId, propertyName }: { room: Roo
 
       <div className="flex flex-col justify-between p-6 sm:col-span-3">
         <div>
-          <h3 className="text-xl text-charcoal">{room.name}</h3>
+          <h3 className="flex items-center gap-2 text-xl text-charcoal">
+            {room.name}
+            {room.is_available === false && (
+              <span className="rounded-full bg-charcoal/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-charcoal/60">
+                Sold Out
+              </span>
+            )}
+          </h3>
           {room.description && <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{room.description}</p>}
 
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-charcoal/70">
@@ -59,12 +66,18 @@ export default function RoomCard({ room, propertyId, propertyName }: { room: Roo
               <span className="text-sm text-charcoal/60">Enquire for rates</span>
             )}
           </div>
-          <button
-            onClick={() => open({ propertyId, propertyName: `${propertyName} — ${room.name}` })}
-            className="btn-primary"
-          >
-            Enquire Now
-          </button>
+          {room.is_available === false ? (
+            <button disabled className="btn-primary cursor-not-allowed opacity-50">
+              Sold Out
+            </button>
+          ) : (
+            <button
+              onClick={() => open({ propertyId, propertyName: `${propertyName} — ${room.name}` })}
+              className="btn-primary"
+            >
+              Enquire Now
+            </button>
+          )}
         </div>
       </div>
     </div>
