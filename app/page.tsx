@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Mountain, HeartHandshake, ShieldCheck, Wallet, Compass, Leaf, Users } from "lucide-react";
 import Hero from "@/components/shared/Hero";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -34,7 +33,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero
-        image="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1920&auto=format&fit=crop"
+        image="/images/mcleodganj-monastery-hero.png"
         eyebrow="Heritage Heaven Hotels"
         title="Premium Mountain Stays, Rooted in Himachal Hospitality"
         subtitle="From McLeod Ganj's pine-covered slopes to the Dhauladhar skyline — book direct for the best rates and a warmer welcome."
@@ -42,23 +41,13 @@ export default async function HomePage() {
 
       {/* About Us */}
       <section id="about" className="section-padding scroll-mt-20">
-        <div className="container-site grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              eyebrow="About Us"
-              title="Built by people who love these mountains"
-              description="Heritage Heaven Hotels began with a single property — Hotel Rosewood Inn in McLeod Ganj — and a belief that a stay in the hills should feel unhurried, warm, and honest. Today, that same philosophy guides every property we run and every guest we welcome."
-            />
-          </div>
-          <div className="relative h-[360px] overflow-hidden rounded-md sm:h-[420px]">
-            <Image
-              src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1200&auto=format&fit=crop"
-              alt="Dhauladhar mountain range near Heritage Heaven properties"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-          </div>
+        <div className="container-site max-w-2xl text-center mx-auto">
+          <SectionHeading
+            eyebrow="About Us"
+            title="Built by people who love these mountains"
+            description="Heritage Heaven Hotels began with a single property — Hotel Rosewood Inn in McLeod Ganj — and a belief that a stay in the hills should feel unhurried, warm, and honest. Today, that same philosophy guides every property we run and every guest we welcome."
+            align="center"
+          />
         </div>
 
         <div className="container-site mt-16 grid gap-8 md:grid-cols-3">
