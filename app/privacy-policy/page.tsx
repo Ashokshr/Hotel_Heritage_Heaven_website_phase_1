@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-3xl text-charcoal">Privacy Policy</h1>
         <div className="mt-6 space-y-4 text-sm leading-relaxed text-charcoal/70">
           <p>
-            Heritage Heaven Hotels ("we", "us") collects the information you submit through our enquiry forms —
+            Heritage Heaven Hotels (&ldquo;we&rdquo;, &ldquo;us&rdquo;) collects the information you submit through our enquiry forms —
             name, phone number, email, and stay details — solely to respond to your booking enquiry and improve
             our service.
           </p>

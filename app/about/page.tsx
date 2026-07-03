@@ -65,7 +65,7 @@ export default function AboutPage() {
             <Compass className="text-heritage-500" size={28} />
             <h3 className="mt-4 text-xl text-charcoal">Our Vision</h3>
             <p className="mt-2 text-sm leading-relaxed text-charcoal/65">
-              To become Himachal Pradesh's most trusted independent hotel brand — known for genuine hospitality in
+              To become Himachal Pradesh&apos;s most trusted independent hotel brand — known for genuine hospitality in
               every property we operate.
             </p>
           </div>

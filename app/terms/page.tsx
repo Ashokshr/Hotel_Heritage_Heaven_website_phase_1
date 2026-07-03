@@ -23,7 +23,7 @@ export default function TermsPage() {
           </p>
           <p>
             Cancellation and property-specific policies (check-in/out times, ID requirements, pet policy) are
-            listed on each property's page and apply to all bookings at that property.
+            listed on each property&apos;s page and apply to all bookings at that property.
           </p>
           <p className="text-charcoal/50">
             This is placeholder terms text. Please have it reviewed by a legal professional before publishing.
