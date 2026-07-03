@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -34,22 +35,32 @@ export default function Navbar() {
       )}
     >
       <div className="container-site flex h-20 items-center justify-between">
-        <Link href="/" className="flex flex-col leading-tight">
-          <span
-            className={cn(
-              "font-serif text-xl tracking-wide sm:text-2xl",
-              solid ? "text-charcoal" : "text-white"
-            )}
-          >
-            Heritage Heaven
-          </span>
-          <span
-            className={cn(
-              "text-[10px] uppercase tracking-[0.3em]",
-              solid ? "text-heritage-500" : "text-cream-100"
-            )}
-          >
-            Hotels
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/images/heritage-heaven-emblem.png"
+            alt="Heritage Heaven Hotels crest"
+            width={44}
+            height={44}
+            className="h-9 w-9 shrink-0 sm:h-11 sm:w-11"
+            priority
+          />
+          <span className="flex flex-col leading-tight">
+            <span
+              className={cn(
+                "font-serif text-xl tracking-wide sm:text-2xl",
+                solid ? "text-charcoal" : "text-white"
+              )}
+            >
+              Heritage Heaven
+            </span>
+            <span
+              className={cn(
+                "text-[10px] uppercase tracking-[0.3em]",
+                solid ? "text-heritage-500" : "text-cream-100"
+              )}
+            >
+              Hotels
+            </span>
           </span>
         </Link>
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
 import { FOOTER_LINKS, SITE_CONFIG } from "@/lib/constants";
@@ -7,8 +8,19 @@ export default function Footer() {
     <footer className="bg-charcoal text-cream-100">
       <div className="container-site grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:py-20">
         <div>
-          <p className="font-serif text-2xl text-white">Heritage Heaven</p>
-          <p className="text-xs uppercase tracking-[0.3em] text-heritage-300">Hotels</p>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/heritage-heaven-emblem.png"
+              alt="Heritage Heaven Hotels crest"
+              width={48}
+              height={48}
+              className="h-11 w-11 shrink-0"
+            />
+            <div>
+              <p className="font-serif text-2xl text-white">Heritage Heaven</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-heritage-300">Hotels</p>
+            </div>
+          </div>
           <p className="mt-4 max-w-xs text-sm text-cream-100/70">
             Premium, family-run mountain stays across Himachal Pradesh. Book direct for the best rates
             and a warmer welcome.

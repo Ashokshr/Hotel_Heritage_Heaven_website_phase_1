@@ -17,24 +17,11 @@ const config: Config = {
           DEFAULT: "#22201C",
           light: "#3A362E",
         },
-        // Heritage Green — primary brand color, calibrated from the Heritage
-        // Heaven logo. Used for buttons, links, active states, ratings,
-        // headings accents. 600 is the "Dark Forest Green" hover shade.
+        // Heritage Gold — primary brand color, sampled directly from the
+        // official Heritage Heaven crest logo (gold on black, no green).
+        // Used for buttons, links, active states, ratings, card headings.
+        // 600/700 are the darker hover/pressed shades.
         heritage: {
-          50: "#F1F6EC",
-          100: "#DFEACE",
-          200: "#BFD69E",
-          300: "#98BD6C",
-          400: "#729E48",
-          500: "#4F7F35",
-          600: "#3D652A",
-          700: "#33511F",
-          800: "#243A16",
-          900: "#17250E",
-        },
-        // Antique Gold / Brass — accent color for card icons and dividers.
-        // (This is the site's original V1 primary palette, repurposed.)
-        gold: {
           50: "#FAF6F0",
           100: "#F0E6D6",
           200: "#DFC9A3",
@@ -45,6 +32,21 @@ const config: Config = {
           700: "#544224",
           800: "#3A2E1A",
           900: "#241C10",
+        },
+        // Bright Gold — lighter highlight variant (from the logo's metallic
+        // bevel/shine) used for card accent icons, stars, and dividers so
+        // they read as a shade distinct from primary buttons/links.
+        gold: {
+          50: "#FDF9F0",
+          100: "#F8EDD2",
+          200: "#F0D9A3",
+          300: "#E5BE72",
+          400: "#D4A24C",
+          500: "#B8843A",
+          600: "#8F672C",
+          700: "#6B4D21",
+          800: "#493516",
+          900: "#2E210E",
         },
       },
       fontFamily: {
