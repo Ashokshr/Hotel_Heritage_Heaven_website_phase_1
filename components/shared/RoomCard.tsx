@@ -23,7 +23,7 @@ export default function RoomCard({ room, propertyId, propertyName }: { room: Roo
 
       <div className="flex flex-col justify-between p-6 sm:col-span-3">
         <div>
-          <h3 className="flex items-center gap-2 text-xl text-charcoal">
+          <h3 className="flex items-center gap-2 text-xl text-heritage-700">
             {room.name}
             {room.is_available === false && (
               <span className="rounded-full bg-charcoal/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-charcoal/60">
@@ -36,20 +36,20 @@ export default function RoomCard({ room, propertyId, propertyName }: { room: Roo
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-charcoal/70">
             {room.size_sqft && (
               <span className="flex items-center gap-1.5">
-                <Maximize size={15} className="text-heritage-500" /> {room.size_sqft} sq.ft
+                <Maximize size={15} className="text-gold-500" /> {room.size_sqft} sq.ft
               </span>
             )}
             <span className="flex items-center gap-1.5">
-              <Users size={15} className="text-heritage-500" /> Fits {room.occupancy}
+              <Users size={15} className="text-gold-500" /> Fits {room.occupancy}
             </span>
             {room.bed_type && (
               <span className="flex items-center gap-1.5">
-                <BedDouble size={15} className="text-heritage-500" /> {room.bed_type}
+                <BedDouble size={15} className="text-gold-500" /> {room.bed_type}
               </span>
             )}
             {room.room_view && (
               <span className="flex items-center gap-1.5">
-                <Mountain size={15} className="text-heritage-500" /> {room.room_view}
+                <Mountain size={15} className="text-gold-500" /> {room.room_view}
               </span>
             )}
           </div>

@@ -62,24 +62,24 @@ export default function AboutPage() {
       <section className="section-padding bg-cream-100">
         <div className="container-site grid gap-8 md:grid-cols-3">
           <div className="rounded-md bg-white p-8 shadow-card">
-            <Compass className="text-heritage-500" size={28} />
-            <h3 className="mt-4 text-xl text-charcoal">Our Vision</h3>
+            <Compass className="text-gold-500" size={28} />
+            <h3 className="mt-4 text-xl text-heritage-700">Our Vision</h3>
             <p className="mt-2 text-sm leading-relaxed text-charcoal/65">
               To become Himachal Pradesh&apos;s most trusted independent hotel brand — known for genuine hospitality in
               every property we operate.
             </p>
           </div>
           <div className="rounded-md bg-white p-8 shadow-card">
-            <Leaf className="text-heritage-500" size={28} />
-            <h3 className="mt-4 text-xl text-charcoal">Our Mission</h3>
+            <Leaf className="text-gold-500" size={28} />
+            <h3 className="mt-4 text-xl text-heritage-700">Our Mission</h3>
             <p className="mt-2 text-sm leading-relaxed text-charcoal/65">
               To deliver comfortable, well-located stays with attentive service, fair direct pricing, and respect
               for the mountain communities we operate in.
             </p>
           </div>
           <div className="rounded-md bg-white p-8 shadow-card">
-            <Users className="text-heritage-500" size={28} />
-            <h3 className="mt-4 text-xl text-charcoal">Our Philosophy</h3>
+            <Users className="text-gold-500" size={28} />
+            <h3 className="mt-4 text-xl text-heritage-700">Our Philosophy</h3>
             <p className="mt-2 text-sm leading-relaxed text-charcoal/65">
               Hospitality is personal. We keep our properties small enough to know our guests by name and
               responsive enough to solve problems before they become complaints.

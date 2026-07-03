@@ -66,7 +66,7 @@ export default async function HomePage() {
       {/* Featured Properties */}
       <section className="section-padding bg-cream-100">
         <div className="container-site">
-          <SectionHeading eyebrow="Our Properties" title="Featured Stays" align="center" />
+          <SectionHeading eyebrow="Heritage Heaven Hotels" title="Our Properties" align="center" />
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((property) => (
               <PropertyCard key={property.id} property={property} />
@@ -87,10 +87,10 @@ export default async function HomePage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {WHY_CHOOSE_US.map(({ icon: Icon, title, description }) => (
               <div key={title} className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-heritage-100 text-heritage-500">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-100 text-gold-500">
                   <Icon size={26} />
                 </div>
-                <h3 className="mt-4 text-lg text-charcoal">{title}</h3>
+                <h3 className="mt-4 text-lg text-heritage-700">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{description}</p>
               </div>
             ))}

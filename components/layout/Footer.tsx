@@ -28,7 +28,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {FOOTER_LINKS.explore.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-sm text-cream-100/70 hover:text-white">
+                <Link href={l.href} className="text-sm text-heritage-300 hover:text-heritage-200">
                   {l.label}
                 </Link>
               </li>
@@ -41,7 +41,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {FOOTER_LINKS.partners.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-sm text-cream-100/70 hover:text-white">
+                <Link href={l.href} className="text-sm text-heritage-300 hover:text-heritage-200">
                   {l.label}
                 </Link>
               </li>
@@ -51,7 +51,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {FOOTER_LINKS.legal.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-sm text-cream-100/70 hover:text-white">
+                <Link href={l.href} className="text-sm text-heritage-300 hover:text-heritage-200">
                   {l.label}
                 </Link>
               </li>
@@ -63,22 +63,22 @@ export default function Footer() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Get in Touch</p>
           <ul className="space-y-3 text-sm text-cream-100/70">
             <li className="flex gap-2">
-              <MapPin size={16} className="mt-0.5 shrink-0 text-heritage-300" />
+              <MapPin size={16} className="mt-0.5 shrink-0 text-gold-400" />
               McLeod Ganj, Dharamshala, Himachal Pradesh
             </li>
             <li className="flex gap-2">
-              <Phone size={16} className="mt-0.5 shrink-0 text-heritage-300" />
+              <Phone size={16} className="mt-0.5 shrink-0 text-gold-400" />
               <a href={`tel:${SITE_CONFIG.supportPhone}`}>{SITE_CONFIG.supportPhone}</a>
             </li>
             <li className="flex gap-2">
-              <Mail size={16} className="mt-0.5 shrink-0 text-heritage-300" />
+              <Mail size={16} className="mt-0.5 shrink-0 text-gold-400" />
               <a href={`mailto:${SITE_CONFIG.supportEmail}`}>{SITE_CONFIG.supportEmail}</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-gold-700/40">
         <div className="container-site flex flex-col items-center justify-between gap-2 py-6 text-xs text-cream-100/50 sm:flex-row">
           <p>© {new Date().getFullYear()} Heritage Heaven Hotels. All rights reserved.</p>
           <Link href="/admin/login" className="hover:text-cream-100/80">

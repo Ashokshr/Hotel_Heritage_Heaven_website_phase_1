@@ -47,7 +47,7 @@ export default function Hero({
             <Link href="/hotels" className="btn-primary min-w-[180px]">
               Explore Hotels
             </Link>
-            <button onClick={() => open()} className="btn-secondary min-w-[180px] border-white/40 text-white hover:border-white">
+            <button onClick={() => open()} className="btn-secondary min-w-[180px] bg-transparent border-white/40 text-white hover:border-white">
               Enquire Now
             </button>
           </div>

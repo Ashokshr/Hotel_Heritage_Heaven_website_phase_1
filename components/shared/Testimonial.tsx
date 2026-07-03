@@ -4,13 +4,13 @@ import type { Review } from "@/lib/types";
 export default function Testimonial({ review }: { review: Review }) {
   return (
     <div className="flex h-full flex-col rounded-md bg-white p-7 shadow-card">
-      <Quote className="mb-3 text-heritage-300" size={28} />
+      <Quote className="mb-3 text-gold-400" size={28} />
       <div className="mb-3 flex gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             size={14}
-            className={i < Math.round(review.rating) ? "fill-heritage-500 text-heritage-500" : "text-charcoal/15"}
+            className={i < Math.round(review.rating) ? "fill-gold-500 text-gold-500" : "text-charcoal/15"}
           />
         ))}
       </div>

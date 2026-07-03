@@ -8,14 +8,14 @@ import type { GalleryImage } from "@/lib/types";
 
 export default function Gallery({ images, showFilters = true }: { images: GalleryImage[]; showFilters?: boolean }) {
   const categories = useMemo(() => {
-    const set = new Set(images.map((i) => i.category));
+    const set = new Set(images.map((i) => i.category || "other"));
     return ["all", ...Array.from(set)];
   }, [images]);
 
   const [filter, setFilter] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filtered = filter === "all" ? images : images.filter((i) => i.category === filter);
+  const filtered = filter === "all" ? images : images.filter((i) => (i.category || "other") === filter);
 
   return (
     <div>

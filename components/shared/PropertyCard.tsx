@@ -20,7 +20,7 @@ export default function PropertyCard({ property }: { property: Property }) {
         />
         {property.rating > 0 && (
           <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold text-charcoal">
-            <Star size={12} className="fill-heritage-500 text-heritage-500" />
+            <Star size={12} className="fill-gold-500 text-gold-500" />
             {property.rating}
           </div>
         )}
@@ -31,7 +31,7 @@ export default function PropertyCard({ property }: { property: Property }) {
           <MapPin size={13} />
           {property.city}
         </div>
-        <h3 className="mt-2 text-xl text-charcoal">{property.name}</h3>
+        <h3 className="mt-2 text-xl text-heritage-700">{property.name}</h3>
         {property.tagline && <p className="mt-1.5 text-sm text-charcoal/60">{property.tagline}</p>}
 
         {property.amenities?.length > 0 && (

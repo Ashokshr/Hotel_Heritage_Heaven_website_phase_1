@@ -23,8 +23,8 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-md bg-forest-500/10 p-6 text-center">
-        <p className="font-medium text-forest-600">Thank you — we&apos;ve received your message.</p>
+      <div className="rounded-md bg-heritage-500/10 p-6 text-center">
+        <p className="font-medium text-heritage-700">Thank you — we&apos;ve received your message.</p>
         <p className="mt-1 text-sm text-charcoal/60">Our team will get back to you shortly.</p>
       </div>
     );

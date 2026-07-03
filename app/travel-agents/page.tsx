@@ -42,10 +42,10 @@ export default function TravelAgentsPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {BENEFITS.map(({ icon: Icon, title, description }) => (
               <div key={title} className="rounded-md bg-white p-6 text-center shadow-card">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-heritage-100 text-heritage-500">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-500">
                   <Icon size={22} />
                 </div>
-                <h3 className="mt-4 text-base text-charcoal">{title}</h3>
+                <h3 className="mt-4 text-base text-heritage-700">{title}</h3>
                 <p className="mt-2 text-sm text-charcoal/65">{description}</p>
               </div>
             ))}

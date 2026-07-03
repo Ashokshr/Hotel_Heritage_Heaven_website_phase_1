@@ -31,7 +31,7 @@ export default function CTA({
             {primaryLabel}
           </button>
           {secondaryLabel && secondaryHref && (
-            <Link href={secondaryHref} className="btn-secondary min-w-[200px] border-white/30 text-white hover:border-white">
+            <Link href={secondaryHref} className="btn-secondary min-w-[200px] bg-transparent border-white/30 text-white hover:border-white">
               {secondaryLabel}
             </Link>
           )}

@@ -17,7 +17,24 @@ const config: Config = {
           DEFAULT: "#22201C",
           light: "#3A362E",
         },
+        // Heritage Green — primary brand color, calibrated from the Heritage
+        // Heaven logo. Used for buttons, links, active states, ratings,
+        // headings accents. 600 is the "Dark Forest Green" hover shade.
         heritage: {
+          50: "#F1F6EC",
+          100: "#DFEACE",
+          200: "#BFD69E",
+          300: "#98BD6C",
+          400: "#729E48",
+          500: "#4F7F35",
+          600: "#3D652A",
+          700: "#33511F",
+          800: "#243A16",
+          900: "#17250E",
+        },
+        // Antique Gold / Brass — accent color for card icons and dividers.
+        // (This is the site's original V1 primary palette, repurposed.)
+        gold: {
           50: "#FAF6F0",
           100: "#F0E6D6",
           200: "#DFC9A3",
@@ -28,10 +45,6 @@ const config: Config = {
           700: "#544224",
           800: "#3A2E1A",
           900: "#241C10",
-        },
-        forest: {
-          500: "#4A5D45",
-          600: "#3A4A36",
         },
       },
       fontFamily: {

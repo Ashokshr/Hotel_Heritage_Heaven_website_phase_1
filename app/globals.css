@@ -29,7 +29,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-charcoal/20 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-heritage-500 bg-white px-6 py-3 text-sm font-medium tracking-wide text-heritage-600 transition-colors duration-200 hover:bg-heritage-500 hover:text-white;
   }
 
   .btn-whatsapp {

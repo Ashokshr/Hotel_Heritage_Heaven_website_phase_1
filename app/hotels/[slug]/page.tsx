@@ -70,8 +70,8 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 <MapPin size={16} className="text-heritage-500" /> {property.address || property.city}
               </span>
               {property.rating > 0 && (
-                <span className="flex items-center gap-1 rounded-full bg-heritage-100 px-2.5 py-1 text-xs font-semibold text-heritage-600">
-                  <Star size={12} className="fill-heritage-500 text-heritage-500" /> {property.rating} ({property.review_count} reviews)
+                <span className="flex items-center gap-1 rounded-full bg-gold-100 px-2.5 py-1 text-xs font-semibold text-gold-700">
+                  <Star size={12} className="fill-gold-500 text-gold-500" /> {property.rating} ({property.review_count} reviews)
                 </span>
               )}
             </div>
