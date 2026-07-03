@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 text-charcoal antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-8xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-heritage-500 px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-heritage-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-heritage-500;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-charcoal/20 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal hover:text-white;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-[#25D366] px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#1DA851];
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-heritage-500;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+}
+
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease-out forwards;
+  }
+}
