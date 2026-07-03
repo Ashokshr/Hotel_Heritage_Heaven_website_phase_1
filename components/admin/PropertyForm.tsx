@@ -111,6 +111,27 @@ export default function PropertyForm({ property }: { property?: Property | null 
         </label>
       </Section>
 
+      <Section title="Booking Widget">
+        <p className="-mt-2 text-xs text-charcoal/50">
+          Shown on the property detail page instead of a price, to encourage direct enquiries over rate
+          comparisons. Configurable independently for each property.
+        </p>
+        <Grid>
+          <Field
+            label="Widget Title"
+            name="booking_widget_title"
+            defaultValue={property?.booking_widget_title || "Custom Group Packages"}
+            placeholder="e.g. Custom Group Packages"
+          />
+          <Field
+            label="Widget Description"
+            name="booking_widget_description"
+            defaultValue={property?.booking_widget_description || "Tailored stays for families, corporate retreats & travel groups."}
+            placeholder="e.g. Tailored stays for families, corporate retreats & travel groups."
+          />
+        </Grid>
+      </Section>
+
       <Section title="Images">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Hero Image</label>

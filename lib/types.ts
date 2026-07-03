@@ -91,6 +91,10 @@ export interface Property {
   email: string | null;
   starting_price: number | null;
   property_highlight: PropertyHighlight | null;
+  /** Booking widget headline on the property detail page, shown instead of a price. */
+  booking_widget_title: string | null;
+  /** Booking widget supporting line, shown under the title. */
+  booking_widget_description: string | null;
   featured_image_url: string | null;
   hero_image_url: string | null;
   gallery_categories: GalleryCategory[];

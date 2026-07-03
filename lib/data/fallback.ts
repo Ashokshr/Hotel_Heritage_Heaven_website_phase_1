@@ -25,6 +25,8 @@ export const FALLBACK_PROPERTIES: Property[] = [
     email: "hotelrosewoodin@gmail.com",
     starting_price: 2800,
     property_highlight: { text: "5 Minutes to Triund Trek", icon: "mountain", isActive: true },
+    booking_widget_title: "Custom Group Packages",
+    booking_widget_description: "Tailored stays for families, corporate retreats & travel groups.",
     featured_image_url:
       "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop",
     hero_image_url:
@@ -148,6 +150,8 @@ export const FALLBACK_PROPERTIES: Property[] = [
     email: "rajaspalace@heritageheavenhotels.com",
     starting_price: 2550,
     property_highlight: { text: "Steps from Bhagsunag Temple", icon: "mapPin", isActive: true },
+    booking_widget_title: "Personalized Family Stays",
+    booking_widget_description: "Warm, homely hospitality tailored for families and small groups.",
     featured_image_url: "https://images.unsplash.com/photo-1601565415267-724f1a6c1e6f?q=80&w=1200&auto=format&fit=crop",
     hero_image_url: "https://images.unsplash.com/photo-1601565415267-724f1a6c1e6f?q=80&w=1920&auto=format&fit=crop",
     gallery_categories: [

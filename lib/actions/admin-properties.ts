@@ -125,6 +125,10 @@ export async function upsertProperty(propertyId: string | null, formData: FormDa
     email: String(formData.get("email") || ""),
     starting_price: formData.get("starting_price") ? Number(formData.get("starting_price")) : null,
     property_highlight: parsePropertyHighlight(formData),
+    booking_widget_title: String(formData.get("booking_widget_title") || "").trim() || "Custom Group Packages",
+    booking_widget_description:
+      String(formData.get("booking_widget_description") || "").trim() ||
+      "Tailored stays for families, corporate retreats & travel groups.",
     hero_image_url: String(formData.get("hero_image_url") || ""),
     gallery_categories: parseGalleryCategories(formData),
     gallery_images: parseGalleryImages(formData),

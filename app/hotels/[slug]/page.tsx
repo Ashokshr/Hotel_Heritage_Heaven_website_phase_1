@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { MapPin, Star, CheckCircle2 } from "lucide-react";
+import { MapPin, Star, CheckCircle2, Sparkles } from "lucide-react";
 import Hero from "@/components/shared/Hero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import RoomCard from "@/components/shared/RoomCard";
@@ -79,13 +79,19 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
             <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{property.description}</p>
           </div>
 
-          <div className="rounded-md bg-cream-100 p-6">
-            <p className="text-sm text-charcoal/60">Starting from</p>
-            <p className="font-serif text-3xl text-charcoal">
-              {property.starting_price ? `₹${property.starting_price.toLocaleString("en-IN")}` : "Enquire"}
-              <span className="text-sm font-normal text-charcoal/50"> /night</span>
+          <div className="h-fit rounded-2xl border border-charcoal/5 bg-cream-50 p-7 shadow-elevated sm:p-8 lg:sticky lg:top-28">
+            <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-heritage-500">
+              <Sparkles size={14} />
+              Direct Booking
+            </div>
+            <h3 className="mt-3 font-serif text-2xl leading-snug text-charcoal sm:text-[1.65rem]">
+              {property.booking_widget_title || "Custom Group Packages"}
+            </h3>
+            <p className="mt-2.5 text-sm leading-relaxed text-charcoal/65">
+              {property.booking_widget_description ||
+                "Tailored stays for families, corporate retreats & travel groups."}
             </p>
-            <div className="mt-5">
+            <div className="mt-6 border-t border-charcoal/10 pt-6">
               <EnquireButtons propertyId={property.id} propertyName={property.name} phone={property.phone} whatsappNumber={property.whatsapp_number} />
             </div>
           </div>
