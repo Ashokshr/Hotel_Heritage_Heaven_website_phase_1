@@ -90,7 +90,7 @@ export default function EnquiryModal({ isOpen, onClose, propertyId, propertyName
           <form action={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Field label="Full Name" name="name" required placeholder="Your name" />
-              <Field label="Phone Number" name="phone" required type="tel" placeholder="+91 98765 43210" />
+              <Field label="Phone Number" name="phone" required type="tel" placeholder="+91 98760 74252" />
             </div>
             <Field label="Email (optional)" name="email" type="email" placeholder="you@example.com" />
             <div className="grid grid-cols-2 gap-4">

@@ -5,7 +5,7 @@ import type { EnquiryFormInput, PartnerEnquiryFormInput } from "@/lib/types";
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "reservations@heritageheavenhotels.com";
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "hotelrosewoodin@gmail.com";
 const FROM_EMAIL = process.env.EMAIL_FROM || "Heritage Heaven Hotels <onboarding@resend.dev>";
 
 /**
