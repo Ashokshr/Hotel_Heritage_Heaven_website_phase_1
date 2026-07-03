@@ -77,6 +77,17 @@ function parseFaqs(formData: FormData) {
   });
 }
 
+function parsePropertyHighlight(formData: FormData) {
+  const text = String(formData.get("highlight_text") || "").trim();
+  if (!text) return null;
+  return {
+    text,
+    icon: String(formData.get("highlight_icon") || "sparkles"),
+    seasonalLabel: String(formData.get("highlight_seasonal_label") || "").trim() || undefined,
+    isActive: formData.get("highlight_is_active") === "on",
+  };
+}
+
 function parsePolicies(formData: FormData) {
   return {
     checkIn: String(formData.get("checkIn") || ""),
@@ -113,6 +124,7 @@ export async function upsertProperty(propertyId: string | null, formData: FormDa
     whatsapp_number: String(formData.get("whatsapp_number") || ""),
     email: String(formData.get("email") || ""),
     starting_price: formData.get("starting_price") ? Number(formData.get("starting_price")) : null,
+    property_highlight: parsePropertyHighlight(formData),
     hero_image_url: String(formData.get("hero_image_url") || ""),
     gallery_categories: parseGalleryCategories(formData),
     gallery_images: parseGalleryImages(formData),

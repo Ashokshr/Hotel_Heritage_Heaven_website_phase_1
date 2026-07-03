@@ -6,6 +6,7 @@ import { Loader2, Save } from "lucide-react";
 import { upsertProperty } from "@/lib/actions/admin-properties";
 import ImageUploader from "@/components/admin/ImageUploader";
 import GalleryManager from "@/components/admin/GalleryManager";
+import { HIGHLIGHT_ICON_OPTIONS, DEFAULT_HIGHLIGHT_ICON } from "@/lib/highlight-icons";
 import type { Property } from "@/lib/types";
 
 export default function PropertyForm({ property }: { property?: Property | null }) {
@@ -61,6 +62,52 @@ export default function PropertyForm({ property }: { property?: Property | null 
         <label className="mt-2 flex items-center gap-2 text-sm text-charcoal/75">
           <input type="checkbox" name="is_published" defaultChecked={property?.is_published ?? true} className="h-4 w-4" />
           Published (visible on the live site)
+        </label>
+      </Section>
+
+      <Section title="Property Highlight">
+        <p className="-mt-2 text-xs text-charcoal/50">
+          Shown on the property card instead of a price — this property&apos;s unique selling point (e.g.
+          &quot;Mountain View Rooms&quot;, &quot;Complimentary Breakfast&quot;, &quot;Ideal for Group Bookings&quot;). Leave the text
+          blank to hide the highlight on the card.
+        </p>
+        <Grid>
+          <Field
+            label="Highlight Text"
+            name="highlight_text"
+            defaultValue={property?.property_highlight?.text || ""}
+            placeholder="e.g. Walking Distance to Bhagsu Falls"
+            className="sm:col-span-2"
+          />
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Icon</label>
+            <select
+              name="highlight_icon"
+              defaultValue={property?.property_highlight?.icon || DEFAULT_HIGHLIGHT_ICON}
+              className="w-full rounded-sm border border-charcoal/15 bg-cream-50 px-3.5 py-2.5 text-sm outline-none focus:border-heritage-400"
+            >
+              {HIGHLIGHT_ICON_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Field
+            label="Seasonal Label (optional)"
+            name="highlight_seasonal_label"
+            defaultValue={property?.property_highlight?.seasonalLabel || ""}
+            placeholder="e.g. Winter Special"
+          />
+        </Grid>
+        <label className="mt-2 flex items-center gap-2 text-sm text-charcoal/75">
+          <input
+            type="checkbox"
+            name="highlight_is_active"
+            defaultChecked={property?.property_highlight?.isActive ?? true}
+            className="h-4 w-4"
+          />
+          Active (uncheck to hide temporarily without losing the text)
         </label>
       </Section>
 

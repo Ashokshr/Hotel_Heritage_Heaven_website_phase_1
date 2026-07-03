@@ -55,6 +55,24 @@ export interface Room {
   is_available: boolean;
 }
 
+/**
+ * Admin-configurable card highlight (USP) shown instead of a price line —
+ * e.g. "Mountain View Rooms" with a mountain icon. Unique per property.
+ * `text` is the only field required today; the rest future-proof the
+ * feature for seasonal styling and limited-time promotions.
+ */
+export interface PropertyHighlight {
+  text: string;
+  /** Key into HIGHLIGHT_ICONS (lib/highlight-icons.ts). Defaults to "sparkles". */
+  icon?: string;
+  /** Reserved for future badge theming, e.g. "gold" | "heritage" | "charcoal". */
+  badgeColor?: string;
+  /** Reserved for future seasonal labeling, e.g. "Winter Special". */
+  seasonalLabel?: string;
+  /** Reserved for future limited-time promotions — false hides the badge without deleting it. */
+  isActive?: boolean;
+}
+
 export interface Property {
   id: string;
   slug: string;
@@ -72,6 +90,7 @@ export interface Property {
   whatsapp_number: string | null;
   email: string | null;
   starting_price: number | null;
+  property_highlight: PropertyHighlight | null;
   featured_image_url: string | null;
   hero_image_url: string | null;
   gallery_categories: GalleryCategory[];

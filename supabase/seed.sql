@@ -15,7 +15,7 @@
 insert into public.properties (
   slug, name, city, state, tagline, short_description, description, address,
   latitude, longitude, google_maps_embed_url, phone, whatsapp_number, email,
-  starting_price, featured_image_url, hero_image_url, gallery_categories, gallery_images,
+  starting_price, property_highlight, featured_image_url, hero_image_url, gallery_categories, gallery_images,
   amenities, nearby_attractions, faqs, policies, rating, review_count, is_published, sort_order
 ) values (
   'rosewood-inn-mcleod-ganj',
@@ -32,6 +32,7 @@ insert into public.properties (
   '919876074252',
   'hotelrosewoodin@gmail.com',
   2800,
+  '{"text": "5 Minutes to Triund Trek", "icon": "mountain", "isActive": true}'::jsonb,
   'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1920&auto=format&fit=crop',
   '[
@@ -129,7 +130,7 @@ on conflict do nothing;
 insert into public.properties (
   slug, name, city, state, tagline, short_description, description, address,
   latitude, longitude, google_maps_embed_url, phone, whatsapp_number, email,
-  starting_price, featured_image_url, hero_image_url, gallery_categories, gallery_images,
+  starting_price, property_highlight, featured_image_url, hero_image_url, gallery_categories, gallery_images,
   amenities, nearby_attractions, faqs, policies, rating, review_count, is_published, sort_order
 ) values (
   'rajas-palace-mcleod-ganj',
@@ -146,6 +147,7 @@ insert into public.properties (
   '919876074252',
   'rajaspalace@heritageheavenhotels.com',
   2550,
+  '{"text": "Steps from Bhagsunag Temple", "icon": "mapPin", "isActive": true}'::jsonb,
   'https://images.unsplash.com/photo-1601565415267-724f1a6c1e6f?q=80&w=1200&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1601565415267-724f1a6c1e6f?q=80&w=1920&auto=format&fit=crop',
   '[

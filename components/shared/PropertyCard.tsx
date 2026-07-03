@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Star, ArrowUpRight } from "lucide-react";
-import { formatINR } from "@/lib/utils";
+import { HIGHLIGHT_ICONS, DEFAULT_HIGHLIGHT_ICON, type HighlightIconKey } from "@/lib/highlight-icons";
 import type { Property } from "@/lib/types";
 
 export default function PropertyCard({ property }: { property: Property }) {
+  const highlight = property.property_highlight;
+  const showHighlight = !!highlight?.text && highlight.isActive !== false;
+  const HighlightIcon = HIGHLIGHT_ICONS[(highlight?.icon as HighlightIconKey) || DEFAULT_HIGHLIGHT_ICON] || HIGHLIGHT_ICONS[DEFAULT_HIGHLIGHT_ICON];
+
   return (
     <Link
       href={`/hotels/${property.slug}`}
@@ -44,17 +48,19 @@ export default function PropertyCard({ property }: { property: Property }) {
           </ul>
         )}
 
-        <div className="mt-5 flex items-center justify-between border-t border-charcoal/10 pt-4">
-          <div>
-            {property.starting_price ? (
-              <>
-                <span className="text-xs text-charcoal/50">Starting from</span>
-                <p className="font-serif text-lg text-charcoal">{formatINR(property.starting_price)}/night</p>
-              </>
-            ) : (
-              <span className="text-sm text-charcoal/60">Enquire for rates</span>
+        {showHighlight && (
+          <div className="mt-4 flex items-center gap-2 rounded-sm bg-gold-50 px-3 py-2 text-xs font-medium text-heritage-700">
+            <HighlightIcon size={14} className="shrink-0 text-gold-500" />
+            <span className="truncate">{highlight!.text}</span>
+            {highlight?.seasonalLabel && (
+              <span className="ml-auto shrink-0 rounded-full bg-heritage-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                {highlight.seasonalLabel}
+              </span>
             )}
           </div>
+        )}
+
+        <div className="mt-4 flex items-center justify-end border-t border-charcoal/10 pt-4">
           <span className="flex items-center gap-1 text-sm font-medium text-heritage-500 group-hover:underline">
             Explore Property <ArrowUpRight size={15} />
           </span>
