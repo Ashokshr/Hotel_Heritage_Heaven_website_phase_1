@@ -31,6 +31,5 @@ export const FOOTER_LINKS = {
 };
 
 export const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://instagram.com/heritageheavenhotels" },
-  { label: "Facebook", href: "https://facebook.com/heritageheavenhotels" },
+  { label: "Instagram", href: "https://www.instagram.com/heritageheaven.dharamshala/" },
 ];

@@ -61,6 +61,9 @@ export default function RoomCard({ room, propertyId, propertyName }: { room: Roo
               <>
                 <span className="text-xs text-charcoal/50">Per night</span>
                 <p className="font-serif text-lg text-charcoal">{formatINR(room.price_per_night)}</p>
+                {room.rate_disclaimer && (
+                  <p className="mt-1 text-[11px] leading-snug text-charcoal/45">{room.rate_disclaimer}</p>
+                )}
               </>
             ) : (
               <span className="text-sm text-charcoal/60">Enquire for rates</span>

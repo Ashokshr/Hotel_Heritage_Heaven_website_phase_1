@@ -182,6 +182,9 @@ export async function upsertRoom(propertyId: string, roomId: string | null, form
     bed_type: String(formData.get("bed_type") || ""),
     room_view: String(formData.get("room_view") || ""),
     price_per_night: formData.get("price_per_night") ? Number(formData.get("price_per_night")) : null,
+    rate_disclaimer:
+      String(formData.get("rate_disclaimer") || "").trim() ||
+      "*Final rates may vary based on season, occupancy and meal plan.",
     amenities: lines(formData.get("amenities")),
     images: lines(formData.get("images")).map((line) => {
       const [url, alt] = line.split("|").map((s) => s?.trim());

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { FOOTER_LINKS, SITE_CONFIG } from "@/lib/constants";
 
 export default function Footer() {
@@ -26,11 +26,14 @@ export default function Footer() {
             and a warmer welcome.
           </p>
           <div className="mt-5 flex gap-3">
-            <a href="https://instagram.com/heritageheavenhotels" aria-label="Instagram" className="rounded-full border border-white/15 p-2 hover:border-heritage-300 hover:text-heritage-300">
+            <a
+              href="https://www.instagram.com/heritageheaven.dharamshala/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="rounded-full border border-white/15 p-2 hover:border-heritage-300 hover:text-heritage-300"
+            >
               <Instagram size={16} />
-            </a>
-            <a href="https://facebook.com/heritageheavenhotels" aria-label="Facebook" className="rounded-full border border-white/15 p-2 hover:border-heritage-300 hover:text-heritage-300">
-              <Facebook size={16} />
             </a>
           </div>
         </div>

@@ -86,6 +86,6 @@ export function buildOrganizationSchema() {
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
-    sameAs: ["https://instagram.com/heritageheavenhotels", "https://facebook.com/heritageheavenhotels"],
+    sameAs: ["https://www.instagram.com/heritageheaven.dharamshala/"],
   };
 }

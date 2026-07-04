@@ -49,6 +49,8 @@ export interface Room {
   weekend_price: number | null;
   seasonal_price: number | null;
   seasonal_label: string | null;
+  /** Small fine-print line shown directly below the price on the property page, editable per room. */
+  rate_disclaimer: string | null;
   amenities: string[];
   images: { url: string; alt: string }[];
   sort_order: number;

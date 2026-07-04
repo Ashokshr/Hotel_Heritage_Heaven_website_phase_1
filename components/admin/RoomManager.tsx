@@ -132,6 +132,16 @@ function RoomFormModal({ propertyId, room, onClose }: { propertyId: string; room
             </div>
           </div>
           <div>
+            <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Room Rate Disclaimer</label>
+            <input
+              name="rate_disclaimer"
+              defaultValue={room?.rate_disclaimer || "*Final rates may vary based on season, occupancy and meal plan."}
+              placeholder="*Final rates may vary based on season, occupancy and meal plan."
+              className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 text-sm"
+            />
+            <p className="mt-1 text-xs text-charcoal/50">Small fine print shown directly below this room&apos;s price.</p>
+          </div>
+          <div>
             <label className="mb-1.5 block text-sm font-medium text-charcoal/80">Amenities (one per line)</label>
             <textarea name="amenities" defaultValue={amenitiesText} rows={3} className="w-full rounded-sm border border-charcoal/15 px-3.5 py-2.5 font-mono text-xs" />
           </div>
