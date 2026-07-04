@@ -46,8 +46,34 @@
 }
 
 @layer utilities {
+  /* Defined here (not just in tailwind.config.ts) so the keyframes always
+     ship in the production CSS bundle — Tailwind only emits keyframes for
+     an `animation` utility when a matching `animate-*` class is scanned in
+     content, and no component uses that literal class name here. Without
+     this, `.fade-up` had no matching @keyframes in production, so every
+     element using it (Hero eyebrow/title/subtitle/buttons) stayed frozen at
+     opacity: 0 — an invisible headline and CTA on every page's banner. */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .fade-up {
     opacity: 0;
     animation: fadeUp 0.7s ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
   }
 }
