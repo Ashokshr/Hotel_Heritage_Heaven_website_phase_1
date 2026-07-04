@@ -156,11 +156,37 @@ export interface SeoMetadata {
 }
 
 /** content_blocks.key values and their `data` shapes. */
+
+/** A single icon + title + description card (About "values" or Why Choose Us items). */
+export interface HomeInfoCard {
+  /** Key into ICON_MAP (lib/content-icons.ts). */
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface HomeContentBlock {
-  heroBanners: { url: string; alt: string; eyebrow?: string; title?: string; subtitle?: string }[];
-  introTitle?: string;
-  introDescription?: string;
-  introImageUrl?: string;
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+  };
+  about: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    values: HomeInfoCard[];
+  };
+  whyChooseUs: {
+    eyebrow: string;
+    title: string;
+    items: HomeInfoCard[];
+  };
+  closingCta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+  };
 }
 
 export interface AboutUsContentBlock {

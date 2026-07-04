@@ -1,11 +1,13 @@
-import { Mountain, HeartHandshake, ShieldCheck, Wallet, Compass, Leaf, Users } from "lucide-react";
 import Hero from "@/components/shared/Hero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import PropertyCard from "@/components/shared/PropertyCard";
 import Testimonial from "@/components/shared/Testimonial";
 import CTA from "@/components/shared/CTA";
 import { getProperties, getFeaturedReviews } from "@/lib/data/properties";
+import { getHomeContent } from "@/lib/data/content-blocks";
 import { buildMetadata } from "@/lib/seo";
+import { ICON_MAP, DEFAULT_ICON, type IconKey } from "@/lib/content-icons";
+import type { HomeInfoCard } from "@/lib/types";
 
 export const metadata = buildMetadata({
   title: "Heritage Heaven Hotels | Premium Mountain Stays in Himachal Pradesh",
@@ -14,50 +16,39 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
-const WHY_CHOOSE_US = [
-  { icon: Wallet, title: "Best Direct Rates", description: "Book with us directly and skip OTA commissions and hidden charges." },
-  { icon: Mountain, title: "Prime Mountain Locations", description: "Handpicked properties minutes from the region's best trails and viewpoints." },
-  { icon: HeartHandshake, title: "Personal Hospitality", description: "Family-run service with attention that big chains can't match." },
-  { icon: ShieldCheck, title: "Trusted & Transparent", description: "Clear policies, real reviews, and a team that responds fast." },
-];
-
-const VALUES = [
-  { icon: Compass, title: "Our Vision", description: "To become Himachal Pradesh's most trusted independent hotel brand — known for genuine hospitality in every property we operate." },
-  { icon: Leaf, title: "Our Mission", description: "To deliver comfortable, well-located stays with attentive service, fair direct pricing, and respect for the mountain communities we operate in." },
-  { icon: Users, title: "Our Philosophy", description: "Hospitality is personal. We keep our properties small enough to know our guests by name and responsive enough to solve problems fast." },
-];
+function resolveIcon(key: string) {
+  return ICON_MAP[key as IconKey] || ICON_MAP[DEFAULT_ICON];
+}
 
 export default async function HomePage() {
-  const [properties, reviews] = await Promise.all([getProperties(), getFeaturedReviews()]);
+  const [properties, reviews, content] = await Promise.all([getProperties(), getFeaturedReviews(), getHomeContent()]);
 
   return (
     <>
-      <Hero
-        image="/images/mcleodganj-monastery-hero.png"
-        eyebrow="Heritage Heaven Hotels"
-        title="Premium Mountain Stays, Rooted in Himachal Hospitality"
-        subtitle="From McLeod Ganj's pine-covered slopes to the Dhauladhar skyline — book direct for the best rates and a warmer welcome."
-      />
+      <Hero image="/images/mcleodganj-monastery-hero.png" eyebrow={content.hero.eyebrow} title={content.hero.title} subtitle={content.hero.subtitle} />
 
       {/* About Us */}
       <section id="about" className="section-padding scroll-mt-20">
         <div className="container-site max-w-2xl text-center mx-auto">
           <SectionHeading
-            eyebrow="About Us"
-            title="Built by people who love these mountains"
-            description="Heritage Heaven Hotels began with a single property — Hotel Rosewood Inn in McLeod Ganj — and a belief that a stay in the hills should feel unhurried, warm, and honest. Today, that same philosophy guides every property we run and every guest we welcome."
+            eyebrow={content.about.eyebrow}
+            title={content.about.title}
+            description={content.about.description}
             align="center"
           />
         </div>
 
         <div className="container-site mt-16 grid gap-8 md:grid-cols-3">
-          {VALUES.map(({ icon: Icon, title, description }) => (
-            <div key={title} className="rounded-md bg-white p-8 shadow-card">
-              <Icon className="text-gold-500" size={28} />
-              <h3 className="mt-4 text-xl text-heritage-700">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{description}</p>
-            </div>
-          ))}
+          {content.about.values.map((card: HomeInfoCard) => {
+            const Icon = resolveIcon(card.icon);
+            return (
+              <div key={card.title} className="rounded-md bg-white p-8 shadow-card">
+                <Icon className="text-gold-500" size={28} />
+                <h3 className="mt-4 text-xl text-heritage-700">{card.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{card.description}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -80,17 +71,20 @@ export default async function HomePage() {
       {/* Why Choose Us */}
       <section id="why-choose-us" className="section-padding scroll-mt-20">
         <div className="container-site">
-          <SectionHeading eyebrow="Why Choose Us" title="The Heritage Heaven Difference" align="center" />
+          <SectionHeading eyebrow={content.whyChooseUs.eyebrow} title={content.whyChooseUs.title} align="center" />
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY_CHOOSE_US.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-100 text-gold-500">
-                  <Icon size={26} />
+            {content.whyChooseUs.items.map((card: HomeInfoCard) => {
+              const Icon = resolveIcon(card.icon);
+              return (
+                <div key={card.title} className="text-center">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-100 text-gold-500">
+                    <Icon size={26} />
+                  </div>
+                  <h3 className="mt-4 text-lg text-heritage-700">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{card.description}</p>
                 </div>
-                <h3 className="mt-4 text-lg text-heritage-700">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -110,9 +104,9 @@ export default async function HomePage() {
       )}
 
       <CTA
-        eyebrow="Ready When You Are"
-        title="Let's plan your mountain escape"
-        description="Reach out directly and our team will help you pick the right property, room, and dates."
+        eyebrow={content.closingCta.eyebrow}
+        title={content.closingCta.title}
+        description={content.closingCta.description}
         secondaryLabel="Contact Us"
         secondaryHref="/contact"
       />

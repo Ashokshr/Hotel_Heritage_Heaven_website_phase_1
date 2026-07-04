@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Building2, MessageSquareQuote, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Building2, MessageSquareQuote, FileText, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { logoutAdmin } from "@/lib/actions/admin-auth";
 
@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/admin/dashboard", label: "Enquiries", icon: LayoutDashboard },
   { href: "/admin/properties", label: "Properties", icon: Building2 },
   { href: "/admin/reviews", label: "Guest Reviews", icon: MessageSquareQuote },
+  { href: "/admin/content", label: "Homepage Content", icon: FileText },
 ];
 
 function SidebarContent({ pathname, onNavigate }: { pathname: string | null; onNavigate?: () => void }) {
